@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Filmes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+
+    <ion-list>
+        <ion-item>
+          <ion-label>Filme</ion-label>
+        <ion-input></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Tipo de busca</ion-label>
+          <ion-select placeholder="Select One" selected-text="Editora">
+            <ion-select-option value="Assunto">Assunto</ion-select-option>
+            <ion-select-option value="Editora">Editora</ion-select-option>
+            <ion-select-option value="Autor">Autor</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-button>Buscar</ion-button>
+      </ion-list>
+
+                <ion-card *ngFor="let item of filmes">
+                    <ion-card-header>
+                      <ion-card-subtitle>Editora: {{ item.editora }}</ion-card-subtitle>
+                      <ion-card-title>Autor: {{ item.autor }}</ion-card-title>
+                    </ion-card-header>
+                  
+                    <ion-card-content>
+                      <h2>Assunto</h2>
+                        {{ item.assunto }}
+                    </ion-card-content>
+                  </ion-card>
+
+
+</ion-content>
