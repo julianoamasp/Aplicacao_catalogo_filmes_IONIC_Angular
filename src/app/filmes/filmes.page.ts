@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../movie.service';
 import { NavController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-filmes',
   templateUrl: './filmes.page.html',
   styleUrls: ['./filmes.page.scss'],
-  providers: [
-    MovieService
-  ]
+
 })
 export class FilmesPage implements OnInit {
 
@@ -23,21 +20,7 @@ export class FilmesPage implements OnInit {
 
   
 
-  constructor(public navCtrol: NavController, public navParams: NavParams, private movieService: MovieService) { 
-    
-    }
-    
-    ionViewDidLoad() {
-      this.movieService.getLatestMovies().subscribe(data => {
-        const response = (data as any);
-        const objeto_retorno = JSON.parse(response._body);
-        console.log(objeto_retorno);
-       
-        }, error => {
-        console.log(error);
-        }
-        )
-      }
+  constructor() { }
   ngOnInit() {
   }
 

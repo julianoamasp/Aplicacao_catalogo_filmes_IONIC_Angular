@@ -1,20 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, AlertController } from '@ionic/angular';
+import { Http } from '@angular/http';
+import { MovieService } from '../movie.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-livros',
   templateUrl: './livros.page.html',
   styleUrls: ['./livros.page.scss'],
+  providers:[
+    MovieService
+  ]
 })
 export class LivrosPage implements OnInit {
 
+  public livros = new Array<any>();
 
-  public livros: {titulo: string, subtitulo: string, capa: string, editora: string, autor: string, isbn: string, publicacao: string, paginas: string}[] = [
-    {"titulo":'Politica', "subtitulo":'Abril', "capa":'Jhonas Rex', 'editora':'Abril','autor':'billy','isbn':'não', 'publicacao':'08/8/18','paginas':'400'},
-    {"titulo":'A contra', "subtitulo":'Que te cobra', "capa":'Triunfo', 'editora':'Globo','autor':'Fernão Baron','isbn':'sim', 'publicacao':'02/1/15','paginas':'100'}
-  ];
-  constructor() { }
+  constructor(
+    public http:Http,
+    public movieService:MovieService,
+    public navController:NavController,
+    ) { 
+    this.ionViewDidLoad();
+  }
 
+  ionViewDidLoad() {
+    this.movieService.getTeste().subscribe(
+    data => {
+      const response = (data as any);
+      const objeto_retorno = JSON.parse(response._body);
+
+      for (var li in objeto_retorno){
+        console.log(li);
+        this.livros.push(objeto_retorno[li]);
+      }
+    console.log(objeto_retorno);
+    }, error => {
+    console.log(error);
+    })}
 
   ngOnInit() {
   }

@@ -6,23 +6,14 @@ import { Http } from '@angular/http';
 })
 export class MovieService {
 
-  private baseApiPath =  'https://api.themoviedb.org/3';
+  private aula = "books?bibkeys=ISBN:9780345339706,ISBN:9780439064873,ISBN:9780735223523,ISBN:9780525521426&format=json&details=true";
 
-  constructor(public http: Http) { 
-
+  constructor(public http: Http) {
 
   }
-  
-  getLatestMovies(){
-    return this.http.get(this.baseApiPath + '/movie/lastest?api_key=' + this.getApiKey());
+
+  getTeste(){
+    return this.http.get('https://openlibrary.org/api/'+this.aula);
   }
 
-  getPopularMovies() {
-    return this.http.get(this.baseApiPath + '/movie/popular?api_key='
-    + this.getApiKey());
-    }
-
-    getApiKey(): string{
-      return 'a7316168c455f688b8b3cfc8894647db2';
-    }
 }
